@@ -1,29 +1,54 @@
+// Amount of start points for each person
 var startPoints = 40;
+// Points for consuming the needed good
 var consumeBonus = 20;
-var n = 24; //atm must be dividable by 2 and 3
+// Amount of Persons in the simulation
+var n = 24;
+// Amount of runs for the simulation
 var rounds = 10;
 
+/**
+ * Storage costs for the different types of goods
+ * @type {number}
+ */
 storageCosts[typeA] = 1;
 storageCosts[typeB] = 4;
 storageCosts[typeC] = 9;
 
+/**
+ * Probabilities of accepting a trade for person type 1 for the different goods
+ * @type {number}
+ */
 propTypeAccepts['1' + typeA] = 1.0;
 propTypeAccepts['1' + typeB] = 1.0;
 propTypeAccepts['1' + typeC] = 0.0;
 
+/**
+ * Probabilities of accepting a trade for person type 2 for the different goods
+ * @type {number}
+ */
 propTypeAccepts['2' + typeA] = 1.0;
 propTypeAccepts['2' + typeB] = 1.0;
 propTypeAccepts['2' + typeC] = 0.0;
 
+/**
+ * Probabilities of accepting a trade for person type 3 for the different goods
+ * @type {number}
+ */
 propTypeAccepts['3' + typeA] = 1.0;
 propTypeAccepts['3' + typeB] = 0.0;
 propTypeAccepts['3' + typeC] = 1.0;
 
+/**
+ * Probability of concession for all 3 types of persons
+ * @type {number}
+ */
 propTypeNice[1] = 0.0;
 propTypeNice[2] = 0.0;
 propTypeNice[3] = 0.0;
 
-var verbose = true; // log each round
+// log each round
+var verbose = true;
 
 /**
  *  Resets the input fields to the initial state
