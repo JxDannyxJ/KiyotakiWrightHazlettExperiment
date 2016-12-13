@@ -19,33 +19,33 @@ storageCosts[typeC] = 9;
  * Probabilities of accepting a trade for person type 1 for the different goods
  * @type {number}
  */
-propTypeAccepts['1' + typeA] = 1.0;
-propTypeAccepts['1' + typeB] = 1.0;
-propTypeAccepts['1' + typeC] = 0.0;
+propTypeAccepts[pTypeA + typeA] = 1.0;
+propTypeAccepts[pTypeA + typeB] = 1.0;
+propTypeAccepts[pTypeA + typeC] = 0.0;
 
 /**
  * Probabilities of accepting a trade for person type 2 for the different goods
  * @type {number}
  */
-propTypeAccepts['2' + typeA] = 1.0;
-propTypeAccepts['2' + typeB] = 1.0;
-propTypeAccepts['2' + typeC] = 0.0;
+propTypeAccepts[pTypeB + typeA] = 1.0;
+propTypeAccepts[pTypeB + typeB] = 1.0;
+propTypeAccepts[pTypeB + typeC] = 0.0;
 
 /**
  * Probabilities of accepting a trade for person type 3 for the different goods
  * @type {number}
  */
-propTypeAccepts['3' + typeA] = 1.0;
-propTypeAccepts['3' + typeB] = 0.0;
-propTypeAccepts['3' + typeC] = 1.0;
+propTypeAccepts[pTypeC + typeA] = 1.0;
+propTypeAccepts[pTypeC + typeB] = 0.0;
+propTypeAccepts[pTypeC + typeC] = 1.0;
 
 /**
  * Probability of concession for all 3 types of persons
  * @type {number}
  */
-propTypeNice[1] = 0.0;
-propTypeNice[2] = 0.0;
-propTypeNice[3] = 0.0;
+propTypeNice[pTypeA] = 0.0;
+propTypeNice[pTypeB] = 0.0;
+propTypeNice[pTypeC] = 0.0;
 
 // log each round
 var verbose = true;
@@ -196,21 +196,21 @@ document.getElementById('runSimBtn').onclick = function(){
 
         storageCosts[typeA] = parseInt(document.getElementById('storageAtxt').value);
 
-        propTypeAccepts['1' + typeA] = parseFloat(document.getElementById('probType1acceptsA').value);
-        propTypeAccepts['1' + typeB] = parseFloat(document.getElementById('probType1acceptsB').value);
-        propTypeAccepts['1' + typeC] = parseFloat(document.getElementById('probType1acceptsC').value);
+        propTypeAccepts[pTypeA + typeA] = parseFloat(document.getElementById('probType1acceptsA').value);
+        propTypeAccepts[pTypeA + typeB] = parseFloat(document.getElementById('probType1acceptsB').value);
+        propTypeAccepts[pTypeA + typeC] = parseFloat(document.getElementById('probType1acceptsC').value);
 
-        propTypeAccepts['2' + typeA] = parseFloat(document.getElementById('probType2acceptsA').value);
-        propTypeAccepts['2' + typeB] = parseFloat(document.getElementById('probType2acceptsB').value);
-        propTypeAccepts['2' + typeC] = parseFloat(document.getElementById('probType2acceptsC').value);
+        propTypeAccepts[pTypeB + typeA] = parseFloat(document.getElementById('probType2acceptsA').value);
+        propTypeAccepts[pTypeB + typeB] = parseFloat(document.getElementById('probType2acceptsB').value);
+        propTypeAccepts[pTypeB + typeC] = parseFloat(document.getElementById('probType2acceptsC').value);
 
-        propTypeAccepts['3' + typeA] = parseFloat(document.getElementById('probType3acceptsA').value);
-        propTypeAccepts['3' + typeB] = parseFloat(document.getElementById('probType3acceptsB').value);
-        propTypeAccepts['3' + typeC] = parseFloat(document.getElementById('probType3acceptsC').value);
+        propTypeAccepts[pTypeC + typeA] = parseFloat(document.getElementById('probType3acceptsA').value);
+        propTypeAccepts[pTypeC + typeB] = parseFloat(document.getElementById('probType3acceptsB').value);
+        propTypeAccepts[pTypeC + typeC] = parseFloat(document.getElementById('probType3acceptsC').value);
 
-        propTypeNice[1] = parseFloat(document.getElementById('propTyp1nice').value);
-        propTypeNice[2] = parseFloat(document.getElementById('propTyp2nice').value);
-        propTypeNice[3] = parseFloat(document.getElementById('propTyp3nice').value);
+        propTypeNice[pTypeA] = parseFloat(document.getElementById('propTyp1nice').value);
+        propTypeNice[pTypeB] = parseFloat(document.getElementById('propTyp2nice').value);
+        propTypeNice[pTypeC] = parseFloat(document.getElementById('propTyp3nice').value);
 
         verbose = document.getElementById('loggingCheckbox').checked;
 
@@ -233,11 +233,11 @@ function runSim(){
     print('Wahrscheinlichkeit von Bauer Gut zu akzeptieren ' + typeA + ': ' + propTypeAccepts['1' + typeA] + ', ' + typeB +':' + propTypeAccepts['1' + typeB] + ', ' + typeC + ': ' + propTypeAccepts['1' + typeC]);
     print('Wahrscheinlichkeit von Müller Gut zu akzeptieren ' + typeA + ': ' + propTypeAccepts['2' + typeA] + ', ' + typeB +':' + propTypeAccepts['2' + typeB] + ', ' + typeC +':' + propTypeAccepts['2' + typeC]);
     print('Wahrscheinlichkeit von Bäcker Gut zu akzeptieren ' + typeA + ': ' + propTypeAccepts['3' + typeA] + ' ' + typeB +':' + propTypeAccepts['3' + typeB] + ', ' + typeC +':' + propTypeAccepts['3' + typeC]);
-    print('Wahrscheinlichkeit, dass Bauer entgegenkommend ist: ' + propTypeNice[1]);
-    print('Wahrscheinlichkeit, dass Müller entgegenkommend ist: : ' + propTypeNice[2]);
-    print('Wahrscheinlichkeit, dass Bäcker entgegenkommend ist: ' + propTypeNice[3]);
+    print('Wahrscheinlichkeit, dass Bauer entgegenkommend ist: ' + propTypeNice[pTypeA]);
+    print('Wahrscheinlichkeit, dass Müller entgegenkommend ist: : ' + propTypeNice[pTypeB]);
+    print('Wahrscheinlichkeit, dass Bäcker entgegenkommend ist: ' + propTypeNice[pTypeC]);
     createPersons();
-    print('Anzahl an Personen = Bauer: ' + personTypeAmounts[1] + ', Müller: ' + personTypeAmounts[2] + ', Bäcker: ' + personTypeAmounts[3]);
+    print('Anzahl an Personen = Bauer: ' + personTypeAmounts[pTypeA] + ', Müller: ' + personTypeAmounts[pTypeB] + ', Bäcker: ' + personTypeAmounts[pTypeC]);
     print('Anzahl an Gütern = ' + typeA +':' + goodsStartAmounts[typeA] + ', ' + typeB +':' + goodsStartAmounts[typeB] + ', ' + typeC +':' + goodsStartAmounts[typeC] );
     print();
     print('<b><font size="5" color="blue">Starte Simulation</font></b>');

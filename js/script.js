@@ -8,15 +8,18 @@ var buttonPressed = false;
 var typeA = 'Brot';
 var typeB = 'Getreide';
 var typeC = 'Mehl';
+var pTypeA = 'Bauer';
+var pTypeB = 'Müller';
+var pTypeC = 'Bäcker';
 
 /**
  * Amount of persons of each type 1 to 3
  * @type {{type1, type2, type3}}
  */
 var personTypeAmounts = {};
-personTypeAmounts[1] = 0;
-personTypeAmounts[2] = 0;
-personTypeAmounts[3] = 0;
+personTypeAmounts[pTypeA] = 0;
+personTypeAmounts[pTypeB] = 0;
+personTypeAmounts[pTypeC] = 0;
 
 /**
  * Initial amount of goods of each type
@@ -202,9 +205,9 @@ function createPersonTypeGroup(numb, personType, consumeGood, produceGood){
 function createPersons(){
     print('<small>', true);
     var amountOfEachType = n / 3;
-    createPersonTypeGroup(amountOfEachType, 1, typeA, typeB);
-    createPersonTypeGroup(amountOfEachType, 2, typeB, typeC);
-    createPersonTypeGroup(amountOfEachType, 3, typeC, typeA);
+    createPersonTypeGroup(amountOfEachType, pTypeA, typeA, typeB);
+    createPersonTypeGroup(amountOfEachType, pTypeB, typeB, typeC);
+    createPersonTypeGroup(amountOfEachType, pTypeC, typeC, typeA);
     print('</small>', true);
 };
 
@@ -273,7 +276,7 @@ function encounter(p1, p2){
 
 /**
  * Print the status of each person
- * @param analysisMode
+ * @param analysisMode enables the analyse mode which prints the lineNumber
  */
 function showStatuses(analysisMode){
     for(var i in persons){
