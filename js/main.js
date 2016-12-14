@@ -185,7 +185,7 @@ function presetsSelectorChanged(){
 document.getElementById('runSimBtn').onclick = function(){
     n = parseInt(document.getElementById('numbPersonsTxt').value);
     if(n % 2 != 0 || n % 3 != 0)
-        notie.alert(3, 'Sorry, die Anzahl an Personen muss durch  <b>2</b> <i>and</i> <b>3</b> <small> teilbar sein </small>', 5);
+        notie.alert(3, '<font color="black">Sorry, die Anzahl an Personen muss durch  <b>2</b> <i>und</i> <b>3</b> <small> teilbar sein </small></font>', 5);
     else {
         rounds = parseInt(document.getElementById('numbRoundsTxt').value);
         storageCosts[typeA] = parseInt(document.getElementById('storageAtxt').value);
@@ -230,15 +230,20 @@ function runSim(){
     print('Anfangspunktzahl = ' + startPoints)
     print('Konsumbonus = ' + consumeBonus + '</font>');
     print('Gesamtzahl an Gütern = ' + n);
-    print('Wahrscheinlichkeit von Bauer Gut zu akzeptieren ' + typeA + ': ' + propTypeAccepts['1' + typeA] + ', ' + typeB +':' + propTypeAccepts['1' + typeB] + ', ' + typeC + ': ' + propTypeAccepts['1' + typeC]);
-    print('Wahrscheinlichkeit von Müller Gut zu akzeptieren ' + typeA + ': ' + propTypeAccepts['2' + typeA] + ', ' + typeB +':' + propTypeAccepts['2' + typeB] + ', ' + typeC +':' + propTypeAccepts['2' + typeC]);
-    print('Wahrscheinlichkeit von Bäcker Gut zu akzeptieren ' + typeA + ': ' + propTypeAccepts['3' + typeA] + ' ' + typeB +':' + propTypeAccepts['3' + typeB] + ', ' + typeC +':' + propTypeAccepts['3' + typeC]);
-    print('Wahrscheinlichkeit, dass Bauer entgegenkommend ist: ' + propTypeNice[pTypeA]);
-    print('Wahrscheinlichkeit, dass Müller entgegenkommend ist: : ' + propTypeNice[pTypeB]);
-    print('Wahrscheinlichkeit, dass Bäcker entgegenkommend ist: ' + propTypeNice[pTypeC]);
+    print('Wahrscheinlichkeit von ' + pTypeA + ' Ware zu akzeptieren ' + typeA + ': ' + propTypeAccepts[pTypeA + typeA] + ', ' + typeB +':' + propTypeAccepts[pTypeA + typeB] + ', ' + typeC + ': ' + propTypeAccepts[pTypeA + typeC]);
+    print('Wahrscheinlichkeit von ' + pTypeB + ' Ware zu akzeptieren ' + typeA + ': ' + propTypeAccepts[pTypeB + typeA] + ', ' + typeB +':' + propTypeAccepts[pTypeB + typeB] + ', ' + typeC +':' + propTypeAccepts[pTypeB + typeC]);
+    print('Wahrscheinlichkeit von ' + pTypeC + ' Ware zu akzeptieren ' + typeA + ': ' + propTypeAccepts[pTypeC + typeA] + ' ' + typeB +':' + propTypeAccepts[pTypeC + typeB] + ', ' + typeC +':' + propTypeAccepts[pTypeC + typeC]);
+    print('Wahrscheinlichkeit, dass ' + pTypeA + ' entgegenkommend ist: ' + propTypeNice[pTypeA]);
+    print('Wahrscheinlichkeit, dass ' + pTypeB + ' entgegenkommend ist: : ' + propTypeNice[pTypeB]);
+    print('Wahrscheinlichkeit, dass ' + pTypeC + ' entgegenkommend ist: ' + propTypeNice[pTypeC]);
+
     createPersons();
-    print('Anzahl an Personen = Bauer: ' + personTypeAmounts[pTypeA] + ', Müller: ' + personTypeAmounts[pTypeB] + ', Bäcker: ' + personTypeAmounts[pTypeC]);
-    print('Anzahl an Gütern = ' + typeA +':' + goodsStartAmounts[typeA] + ', ' + typeB +':' + goodsStartAmounts[typeB] + ', ' + typeC +':' + goodsStartAmounts[typeC] );
+
+    print('<b><u>Anzahl an Personen</u></b>');
+    print(pTypeA +': ' + personTypeAmounts[pTypeA] + ', ' + pTypeB + ': ' + personTypeAmounts[pTypeB] + ', ' + pTypeC + ': ' + personTypeAmounts[pTypeC]);
+
+    print('<b><u>Anzahl an Gütern</u></b>');
+    print(typeA +': ' + goodsStartAmounts[typeA] + ', ' + typeB +': ' + goodsStartAmounts[typeB] + ', ' + typeC +': ' + goodsStartAmounts[typeC] );
     print();
     print('<b><font size="5" color="blue">Starte Simulation</font></b>');
 
@@ -248,7 +253,7 @@ function runSim(){
         print('<i><font color="gray"><small>[output not shown]</small></font></i>');
     }
     print('<br><b><font size="5" color="blue">Simulation beendet</font></b>');
-    print('<br><b><font size="5" color="red">Markanalyse</font></b><br>');
+    print('<br><b><font size="5" color="red">Marktanalyse</font></b><br>');
     runAnalysis();
     print();
 };

@@ -1,13 +1,14 @@
 
 var storageCosts = {};
 var persons = [];
+
 var propTypeAccepts = {};
 var propTypeNice = {};
-var showSingleSteps = true;
-var buttonPressed = false;
+
 var typeA = 'Brot';
 var typeB = 'Getreide';
 var typeC = 'Mehl';
+
 var pTypeA = 'Bauer';
 var pTypeB = 'Müller';
 var pTypeC = 'Bäcker';
@@ -153,7 +154,7 @@ Person.prototype = {
      * @returns {string} a printable string with the details about the person
      */
     getDetails: function(){
-        return '<i>[Person' + this.getIdStr() + ', type: <b>' + this.type + '</b>, good: <b>' + this.good + '</b>]</i>';
+        return '<i>[Person' + this.getIdStr() + ', Typ: <b>' + this.type + '</b>, Ware: <b>' + this.good + '</b>]</i>';
     },
 
     /**
@@ -179,7 +180,7 @@ Person.prototype = {
      * @returns {string}
      */
     getStatus: function(){
-        return '<i>Person' + this.getIdStr() + ', type: <b>' + this.type + '</b>, good: <b>' + this.good + '</b>, points: <b>' + this.points + '</b>' + this.getDeltaPointsStr() + '</i>';
+        return '<i>Person' + this.getIdStr() + ', Typ: <b>' + this.type + '</b>, Ware: <b>' + this.good + '</b>, Punkte: <b>' + this.points + '</b>' + this.getDeltaPointsStr() + '</i>';
     }
 };
 
@@ -297,7 +298,7 @@ function oneRound(roundNumb){
         persons[i].roundStart();
 
     print('', true);
-    print('<b><font size="4" color="green">round ' + roundNumb + '</font></b>', true);
+    print('<b><font size="4" color="green">Runde ' + roundNumb + '</font></b>', true);
 
     var indices = [];
     for(var i = 0; i < n; i ++)
@@ -315,7 +316,8 @@ function oneRound(roundNumb){
     // Let all persons pay their storage cost for the good they maintain
     for(var i in persons)
         persons[i].payStorage();
-    print('<font color="gray">Status am ende der Runde ' + roundNumb + ':</font>', true);
+    print();
+    print('<font color="gray">Status am Ende der Runde ' + roundNumb + ':</font>', true);
     showStatuses(false);
 };
 
@@ -324,32 +326,10 @@ function oneRound(roundNumb){
  * @param rounds amount of trading iterations
  */
 function runRounds(rounds){
-    // if (showSingleSteps) {
-    //     registerHandler();
-    // }
     for(var i = 0; i < rounds; i ++) {
         oneRound(i + 1);
-        // if (showSingleSteps) {
-        //     waitForIt();
-        // }
     }
 };
-
-function keydownHandler(e) {
-    if (e.keyCode == 13) {  // 13 is the enter key
-        buttonPressed = true;
-    }
-};
-
-function registerHandler() {
-    // register your handler method for the keydown event
-    if (document.addEventListener) {
-        document.addEventListener('keydown', keydownHandler, false);
-    }
-    else if (document.attachEvent) {
-        document.attachEvent('onkeydown', keydownHandler);
-    }
-}
 
 /**
  * Executes the analysis of the collected result and visualizes it
